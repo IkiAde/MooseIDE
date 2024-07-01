@@ -291,12 +291,12 @@ MiImportModelFromFileDialog >> openEntitiesChoice [
 { #category : #action }
 MiImportModelFromFileDialog >> privateImportModel [
 
-	| model importer |
-	importer := self importerForFile.
+	| model  |
+
 
 	model := mooseModelDroplist selectedItem new.
 
-	importer new
+	self importerForFile
 		model: model;
 		inputFile: modelFile;
 		runFilteredBy: importingContext.
