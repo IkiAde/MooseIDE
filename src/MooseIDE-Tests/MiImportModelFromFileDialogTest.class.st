@@ -123,6 +123,7 @@ MiImportModelFromFileDialogTest >> testAddingFilePathSelectsAppropriateMetaModel
 		addItemLabeled: FamixTest1Model
 		do: [  ].
 
+
 	dialog updateForModelFile: modelJSONFile.
 
 	self
