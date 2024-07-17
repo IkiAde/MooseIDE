@@ -585,7 +585,8 @@ MiAbstractBrowser >> restore [
 		window isMinimized ifTrue: [
 			window withAdapterDo: [ :windowAdapter |
 				windowAdapter widgetDo: [ :widget | widget restore ] ] ].
-		window activate ]
+		window withAdapterDo: [ :windowAdapter |
+			windowAdapter widgetDo: [ :widget | widget activate ] ] ]
 ]
 
 { #category : #accessing }
