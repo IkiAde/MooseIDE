@@ -330,14 +330,17 @@ MiImportModelFromFileDialog >> updateForModelFile: aFile [
 	rootFolderInput text: modelFile asFileReference parent pathString.
 
 	modelAsDictionnary := (NeoJSONReader on: aFile readStream) next.
-	modelAsDictionnary
-		at: 'metadata'
-		ifPresent: [ :metadata |
-			modelNameInput text: (metadata at: 'modelName').
+	(modelAsDictionnary isDictionary and: [
+		 modelAsDictionnary includesKey: 'metadata' ])
+		ifTrue: [
+			modelNameInput text:
+				(modelAsDictionnary at: 'metadata' at: 'modelName').
 			mooseModelDroplist selectItem: (mooseModelDroplist items
-					 detect: [ :item | item name = (metadata at: 'modelClass') ]
+					 detect: [ :item |
+						 item name
+						 = (modelAsDictionnary at: 'metadata' at: 'modelClass') ]
 					 ifNone: [  ]) ]
-		ifAbsent: [
+		ifFalse: [
 			modelNameInput text: modelFile basenameWithoutExtension.
 			self metaModelForFile ]
 ]
