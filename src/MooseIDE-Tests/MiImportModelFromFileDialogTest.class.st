@@ -119,16 +119,11 @@ MiImportModelFromFileDialogTest >> testAddingFilePathSelectMetadata [
 { #category : #tests }
 MiImportModelFromFileDialogTest >> testAddingFilePathSelectsAppropriateMetaModel [
 
-	(dialog presenterAt: #mooseModelDroplist)
-		addItemLabeled: FamixTest1Model
-		do: [  ].
-
-
 	dialog updateForModelFile: modelJSONFile.
 
 	self
 		assert: (dialog presenterAt: #mooseModelDroplist) selectedItem
-		equals: FamixTest1Model
+		equals: FamixJavaModel
 ]
 
 { #category : #tests }
