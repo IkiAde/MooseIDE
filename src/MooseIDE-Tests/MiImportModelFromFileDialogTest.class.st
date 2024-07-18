@@ -90,33 +90,6 @@ MiImportModelFromFileDialogTest >> setUp [
 ]
 
 { #category : #tests }
-MiImportModelFromFileDialogTest >> testAddingFilePathSelectMetadata [
-
-	(dialog presenterAt: #mooseModelDroplist)
-		addItemLabeled: FamixJavaModel
-		do: [  ].
-
-
-	dialog updateForModelFile: modelJSONFile.
-
-	self
-		assert: (dialog presenterAt: #mooseModelDroplist) selectedItem
-		equals: FamixJavaModel.
-
-
-	self
-		assert: (dialog presenterAt: #modelNameInput) text
-		equals: 'noname'.
-
-
-	(dialog presenterAt: #modelNameInput) text: 'test1Model'.
-
-	self
-		assert: (dialog presenterAt: #modelNameInput) text
-		equals: 'test1Model'
-]
-
-{ #category : #tests }
 MiImportModelFromFileDialogTest >> testAddingFilePathSelectsAppropriateMetaModel [
 
 	dialog updateForModelFile: modelJSONFile.
@@ -165,18 +138,42 @@ MiImportModelFromFileDialogTest >> testAddingFilePathWithoutAppropriateMetaModel
 ]
 
 { #category : #tests }
+MiImportModelFromFileDialogTest >> testCheckingTheModelName [
+
+	dialog updateForModelFile: modelJSONFile.
+
+	self
+		assert: (dialog presenterAt: #mooseModelDroplist) selectedItem
+		equals: FamixJavaModel.
+
+	self
+		assert: (dialog presenterAt: #modelNameInput) text
+		equals: 'noname'.
+
+	
+]
+
+{ #category : #tests }
 MiImportModelFromFileDialogTest >> testMetadataNotPresent [
 
 	(dialog presenterAt: #mooseModelDroplist)
-		addItemLabeled: FamixJavaModel
+		addItemLabeled: FamixStModel
 		do: [  ].
 
 
 	dialog updateForModelFile: modelJsonWithoutMetadata.
 	self
 		assert: (dialog presenterAt: #mooseModelDroplist) selectedItem
-		equals: FamixJavaModel.
+		equals: FamixStModel
+]
 
-	
+{ #category : #tests }
+MiImportModelFromFileDialogTest >> testUpdateTheModelName [
+	dialog updateForModelFile: modelJSONFile.
 
+	(dialog presenterAt: #modelNameInput) text: 'test1Model'.
+
+	self
+		assert: (dialog presenterAt: #modelNameInput) text
+		equals: 'test1Model'
 ]
