@@ -39,42 +39,42 @@ MiImportModelFromFileDialogTest >> famixTest1ModelFile [
 { #category : #'as yet unclassified' }
 MiImportModelFromFileDialogTest >> modelJsonWithoutMetadata [
 
-	^ '{
+	| jsonString file |
+	jsonString := '[{
+	"FM3":"Famix-PharoSmalltalk-Entities.Method",
+	"id":1,
+	"name":"package:",
+	"cyclomaticComplexity":-1,
+	"isAbstract":false,
+	"isClassSide":false,
+	"isStub":true,
+	"numberOfConditionals":-1,
+	"numberOfLinesOfCode":3,
+	"numberOfStatements":-1,
+	"protocol":"accessing",
+	"signature":"package:(Object)",
+	"timeStamp":""
+},{
+	"FM3":"Famix-PharoSmalltalk-Entities.AnnotationInstance",
+	"id":2,
+	"annotatedEntity": {"ref": 3},
+	"annotationType": {"ref": 4},
+	"isStub":false,
+	"numberOfLinesOfCode":0
+},{
+	"FM3":"Famix-PharoSmalltalk-Entities.ImplicitVariable",
+	"id":5,
+	"name":"self",
+	"isStub":false,
+	"numberOfLinesOfCode":-1,
+	"parentBehaviouralEntity": {"ref": 6}
+}]'.
+
+	file := FileSystem memory workingDirectory / 'test2Model.json'.
+	file writeStreamDo: [ :stream | stream nextPutAll: jsonString ]. 
 	
-	"entities":[{
-		"FM3":"Famix-PharoSmalltalk-Entities.Invocation",
-		"id":1,
-		"candidates":[ {"ref": 2}],
-		"isStub":false,
-		"numberOfLinesOfCode":-1,
-		"receiver": {"ref": 3},
-		"sender": {"ref": 4},
-		"signature":"label:(Object)"
-	},{
-		"FM3":"Famix-PharoSmalltalk-Entities.Method",
-		"id":5,
-		"name":"=",
-		"cyclomaticComplexity":-1,
-		"isAbstract":false,
-		"isClassSide":false,
-		"isStub":true,
-		"numberOfConditionals":-1,
-		"numberOfLinesOfCode":7,
-		"numberOfStatements":-1,
-		"parentType": {"ref": 6},
-		"protocol":"comparing",
-		"signature":"=(Object)",
-		"timeStamp":""
-	},{
-		"FM3":"Famix-PharoSmalltalk-Entities.LocalVariable",
-		"id":7,
-		"name":"pluginClass",
-		"isStub":false,
-		"numberOfLinesOfCode":-1,
-		"parentBehaviouralEntity": {"ref": 8}
-	}]
-	}
-	'
+	^ file 
+	
 ]
 
 { #category : #running }
